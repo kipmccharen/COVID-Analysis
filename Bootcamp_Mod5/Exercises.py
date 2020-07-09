@@ -1,5 +1,5 @@
 from datetime import datetime
-import os, sys
+import os
 
 def wait_key(result='time'):
     os.system("pause")
@@ -24,7 +24,10 @@ class BootCampExercises:
         print("{} seconds elapsed".format(wait_key() - current_time))
 
     def printthis(self):
-        print(input("What do you want me to print?    ->    "))
+        printme = input("What do you want me to print?    ->    ")
+        print(wait_key('OK got it'))
+        print(printme)
+        
 
 if __name__ == '__main__':    
     bce = BootCampExercises()
@@ -32,4 +35,3 @@ if __name__ == '__main__':
     bce.stopwatch()
     bce.printthis()
     print(bce.created)
-    #bce.printthis()

@@ -4,4 +4,5 @@ curtime <- Sys.time()
 
 readline(prompt="Press [enter] to continue")
 
-print(paste(Sys.time()-curtime), ' seconds have elapsed')
+print(Sys.time()-curtime, ' seconds have elapsed')
+
