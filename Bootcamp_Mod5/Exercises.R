@@ -9,8 +9,10 @@ checkrealanimal <- function() {
     my_data <- tolower(readChar(flnm, file.info(flnm)$size))
     my_data <- str_replace_all(my_data, "[\n]", " ")
     
-    success <- grepl(tolower(favan),my_data, fixed = TRUE)
-    return("not quite, try again")
+    success <- grepl(tolower(testanimal),my_data, fixed = TRUE)
+    if (!success){
+      print("not quite, try again")
+    }
   }
   return("that's a real animal, nice one!")
 }
