@@ -3,10 +3,10 @@ import os, sys
 
 def wait_key(result='time'):
     os.system("pause")
-    if result == 'key':
+    if result == 'time':
+        return datetime.now()
+    else:
         return result
-    elif result == 'time':
-        return  datetime.now()
 
 class BootCampExercises:
     def __init__(self):
