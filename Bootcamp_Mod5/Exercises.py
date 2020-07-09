@@ -28,5 +28,8 @@ class BootCampExercises:
 
 if __name__ == '__main__':    
     bce = BootCampExercises()
+    bce.whattimeisit()
+    bce.stopwatch()
+    bce.printthis()
     print(bce.created)
     #bce.printthis()
