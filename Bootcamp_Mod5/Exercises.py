@@ -1,5 +1,6 @@
 from datetime import datetime
 import os
+import re
 
 def wait_key(result='time'):
     os.system("pause")
@@ -24,11 +25,14 @@ class BootCampExercises:
         print("{} seconds elapsed".format(wait_key() - current_time))
 
     def printthis(self):
-        printme = input("What do you want me to print?    ->    ")
-        print(wait_key('OK got it'))
-        print(printme)
+        printme = input("What words you want me to print? (no numbers or special characters)   ->    ")
+        print(wait_key('OK got it\n\n\n'))
+        if re.match(r'([0-9\@\#\$\%\^\&\*.])', printme):
+            print('\n\n\nCan you read? NO NUMBERS OR SPECIAL CHARACTERS. Try again....\n\n\n')
+            self.printthis()
+        else:
+            print(printme)
         
-
 if __name__ == '__main__':    
     bce = BootCampExercises()
     bce.whattimeisit()
