@@ -3,6 +3,8 @@ library(dplyr)
 library(tidyr)
 library(lubridate)
 library(Hmisc)
+library(ggplot2)
+library(scales)
 ##
 data <- read.csv("https://opendata.ecdc.europa.eu/covid19/casedistribution/csv", na.strings = "", fileEncoding = "UTF-8-BOM")
 data[[1]] <- as.Date(data[[1]], "%d/%m/%Y")
@@ -31,8 +33,6 @@ countrylist <- c('United_States_of_America', 'United_Kingdom', 'South_Korea', 'C
 dtogether <- dtogether %>% filter(countriesAndTerritories %in% countrylist)
 head(dtogether)
 ##
-library(ggplot2)
-library(scales)
 
 theme_set(theme_minimal())
 ggplot(data=dtogether, aes(x=dateRep, y=casesPerMillion)) +
