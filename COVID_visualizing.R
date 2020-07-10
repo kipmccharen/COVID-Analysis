@@ -31,7 +31,7 @@ df_viz_limit <- df_viz_limit %>% filter(countriesAndTerritories %in% countrylist
 head(dtogether)
 #%%
 theme_set(theme_minimal())
-ggplot(data=dtogether, aes(x=dateRep, y=casesPerMillion)) +
+ggplot(data=df_viz_limit, aes(x=dateRep, y=casesPerMillion)) +
   scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
                 labels = trans_format("log10", math_format(10^.x))) +
   geom_line(aes(color = countriesAndTerritories)) #, linetype = countriesAndTerritories))
@@ -48,18 +48,20 @@ library(sf)
 library(spData)
 
 ## Reduced existing dataset to latest date
-# lastday = max(rdata$dateRep)
-# rdata <- rdata %>% filter(dateRep == lastday)
-# head(rdata)
+lastday = max(dtogether$dateRep)
+dtogether <- dtogether %>% filter(dateRep == lastday)
+#head(rdata)
 
 ## Exported datasets and added iso_a2 to associate countries with dataset
 # write.csv(rdata,"D:\\Git\\COVID-Analysis\\rdata.csv")
 # write.csv(world,"D:\\Git\\COVID-Analysis\\world.csv", col.names = TRUE)
 
-country_data <- read.csv("D:\\Git\\COVID-Analysis\\rdata.csv", stringsAsFactors = FALSE)
-country_data$iso_a2[country_data$countriesAndTerritories=='Namibia'] <- 'NA'
+country_matching <- read.csv("D:\\Git\\COVID-Analysis\\rdata.csv", stringsAsFactors = FALSE)
+country_matching <- select(country_matching, countriesAndTerritories, iso_a2)
+country_matching$iso_a2[country_matching$countriesAndTerritories=='Namibia'] <- 'NA'
 
-total <- merge(country_data,world,by=c("iso_a2"))
+total <- merge(country_matching,world,by=c("iso_a2"))
+total <- merge(total,dtogether,by=c("countriesAndTerritories"))
 
 worldmap <- ggplot(data = total) +
   theme_map() +
