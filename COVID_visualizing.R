@@ -54,11 +54,12 @@ library(ggthemes)
 library(sf)
 library(spData)
 
-lastday = max(rdata$dateRep)
-rdata <- rdata %>% filter(dateRep == lastday)
-head(rdata)
+## Reduced existing dataset to latest date
+# lastday = max(rdata$dateRep)
+# rdata <- rdata %>% filter(dateRep == lastday)
+# head(rdata)
 
-# Exported datasets and added iso_a2 to associate countries with dataset
+## Exported datasets and added iso_a2 to associate countries with dataset
 # write.csv(rdata,"D:\\Git\\COVID-Analysis\\rdata.csv")
 # write.csv(world,"D:\\Git\\COVID-Analysis\\world.csv", col.names = TRUE)
 
